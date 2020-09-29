@@ -43,7 +43,7 @@ public class MyMvcConfig implements WebMvcConfigurer
                 //静态资源；  *.css , *.js
                 //SpringBoot已经做好了静态资源映射
                 registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
-                        .excludePathPatterns("/login.html","/","/user/login","/login");
+                        .excludePathPatterns("/login.html","/","/user/login","/login","/webjars/**");
             }
         };
         return adapter;
