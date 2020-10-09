@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -56,5 +57,19 @@ public class EmployeeController {
         //redirect: 表示重定向到一个地址  /代表当前项目路径
         //forward: 表示转发到一个地址
         return "redirect:emps";
+    }
+
+    //员工修改, 来到修改页面，查出当前员工，在页面回显
+    @GetMapping("/emp/{id}")
+    public String toEditPage(@PathVariable("id") Integer id, Model model){
+        Employee employee = employeeDao.get(id);
+        //查出部门
+        Collection<Department> departments = departmentDao.getDepartments();
+        model.addAttribute("depts",departments);
+
+        model.addAttribute("emp", employee);
+
+        //回到修改页面(add是一个修改添加二合一的页面)
+        return "emp/add";
     }
 }
