@@ -7,10 +7,7 @@ import com.jiusen.springbootwebcrud.entities.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
@@ -71,5 +68,13 @@ public class EmployeeController {
 
         //回到修改页面(add是一个修改添加二合一的页面)
         return "emp/add";
+    }
+
+    //员工修改
+    @PutMapping("/emp")
+    public String updateEmployee(Employee employee){
+        System.out.println("修改员工的数据: " + employee);
+        employeeDao.save(employee);
+        return "redirect:emps";
     }
 }
