@@ -75,6 +75,14 @@ public class EmployeeController {
     public String updateEmployee(Employee employee){
         System.out.println("修改员工的数据: " + employee);
         employeeDao.save(employee);
-        return "redirect:emps";
+        return "redirect:/emps";
+    }
+
+    //员工删除
+    @DeleteMapping("/emp/{id}")
+    public String deleteEmployee(@PathVariable("id") Integer id){
+        employeeDao.delete(id);
+        System.out.println("删除的员工编号: " + id);
+        return "redirect:/emps";
     }
 }
