@@ -17,17 +17,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class MyMvcConfig implements WebMvcConfigurer
 {
-    //代码方式配置server服务器(必须加入容器中)
-    @Bean
-    public WebServerFactoryCustomizer webServerFactoryCustomizer(){
-        return new WebServerFactoryCustomizer<ConfigurableWebServerFactory>() {
-            @Override
-            public void customize(ConfigurableWebServerFactory factory) {
-                factory.setPort(8089);
-            }
-        };
-    }
-
     @Override
     public void addViewControllers(ViewControllerRegistry registry)
     {
