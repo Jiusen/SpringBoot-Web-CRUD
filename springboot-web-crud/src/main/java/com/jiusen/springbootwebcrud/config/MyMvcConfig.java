@@ -2,6 +2,9 @@ package com.jiusen.springbootwebcrud.config;
 
 import com.jiusen.springbootwebcrud.component.LoginHandlerInterceptor;
 import com.jiusen.springbootwebcrud.component.MyLocaleResolver;
+import org.springframework.boot.web.server.ConfigurableWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
@@ -14,6 +17,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class MyMvcConfig implements WebMvcConfigurer
 {
+    //代码方式配置server服务器(必须加入容器中)
+    @Bean
+    public WebServerFactoryCustomizer webServerFactoryCustomizer(){
+        return new WebServerFactoryCustomizer<ConfigurableWebServerFactory>() {
+            @Override
+            public void customize(ConfigurableWebServerFactory factory) {
+                factory.setPort(8089);
+            }
+        };
+    }
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry)
     {
